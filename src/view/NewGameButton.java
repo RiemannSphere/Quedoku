@@ -29,7 +29,7 @@ public class NewGameButton extends ViewElement {
 		button.addActionListener( new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				createNewGame();
 			}
 		} );
 	}

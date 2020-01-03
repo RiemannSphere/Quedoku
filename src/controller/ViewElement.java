@@ -34,7 +34,15 @@ public class ViewElement {
 	}
 
 	protected final void createNewGame() {
-
+		try {
+			queue.offer(String.format(SController.NEW_GAME_FORMAT, SController.FROM_V_NEW_GAME),
+					SController.OFFER_TIMEOUT, TimeUnit.MILLISECONDS);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (IllegalFormatException e) {
+			System.err.println("Command doesn't match a format.");
+			e.printStackTrace();
+		}
 	}
 
 	/**

@@ -19,6 +19,7 @@ public class SController {
 			+ SEPARATOR + "%d";
 	public static final String UPDATE_FIELD_FORMAT = "%s" + SEPARATOR + "%d" + SEPARATOR + "%d" + SEPARATOR + "%d";
 	public static final String UPDATE_SUDOKU_FORMAT = "%s" + SEPARATOR + "%s" + SEPARATOR + "%s";
+	public static final String NEW_GAME_FORMAT = "%s";
 
 	private List<ModelElement> model;
 	private List<ViewElement> view;
