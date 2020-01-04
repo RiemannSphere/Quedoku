@@ -44,6 +44,18 @@ public class ViewElement {
 			e.printStackTrace();
 		}
 	}
+	
+	protected final void solveCurrentSudoku() {
+		try {
+			queue.offer(String.format(SController.SOLVE_FORMAT, SController.FROM_V_SOLVE),
+					SController.OFFER_TIMEOUT, TimeUnit.MILLISECONDS);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (IllegalFormatException e) {
+			System.err.println("Command doesn't match a format.");
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * Internal method used to trigger certain actions

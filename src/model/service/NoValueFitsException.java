@@ -1,4 +1,4 @@
-package sudokuSolver;
+package model.service;
 
 public class NoValueFitsException extends Exception {
 	private static final long serialVersionUID = 1L;

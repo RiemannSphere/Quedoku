@@ -49,8 +49,6 @@ public class Game extends JFrame {
 		gameLabel = new JLabel(ConstV.GAME_NAME);
 		gameLabel.setForeground(ConstV.TEXT);
 		gameLabel.setFont(ConstV.TEXT_FONT);
-		
-		solveButton = new SolveButton();
 	}
 
 	public Game(SController controller) {
@@ -82,8 +80,9 @@ public class Game extends JFrame {
 		top.setSize(ConstV.FRAME_SIZE, ConstV.TOP_HEIGHT);
 		
 		newGameButton = new NewGameButton(controller);
+		solveButton = new SolveButton(controller);
 		bottom.add(newGameButton.getButton());
-		bottom.add(solveButton);
+		bottom.add(solveButton.getButton());
 		bottom.setBackground(ConstV.BACKGROUND);
 		bottom.setSize(ConstV.FRAME_SIZE, ConstV.BOTTOM_HEIGHT);
 		
@@ -98,6 +97,7 @@ public class Game extends JFrame {
 		int margin = (ConstV.FRAME_SIZE - centerWidth)/2;
 		center.setBorder(new EmptyBorder(0, margin, 0, margin));
 		
+		setVisible(true);
 	}
 
 }

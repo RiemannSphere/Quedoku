@@ -16,9 +16,8 @@ public class Main {
 				SController controller = new SController();
 				
 				Game view = new Game(controller);
-				view.setVisible(true);
 				
-				SudokuModel model = new SudokuModel(controller);
+				new SudokuModel(controller);
 			}
 		});
 	}

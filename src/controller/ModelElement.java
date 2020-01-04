@@ -45,6 +45,9 @@ public class ModelElement {
 		case SController.FROM_V_NEW_GAME:
 			newGame();
 			break;
+		case SController.FROM_V_SOLVE:
+			solveCurrent();
+			break;
 		}
 	}
 
@@ -107,5 +110,12 @@ public class ModelElement {
 	protected void newGame() {
 
 	};
+	
+	/**
+	 * Override this method to get solved sudoku
+	 */
+	protected void solveCurrent() {
+		
+	}
 
 }

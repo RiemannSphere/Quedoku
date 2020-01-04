@@ -1,16 +1,35 @@
 package view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 
-public class SolveButton extends JButton {
-	private static final long serialVersionUID = 1L;
+import controller.SController;
+import controller.ViewElement;
 
-	public SolveButton() {
-		setText(ConstV.SOLVE_BUTTON);
-		setFont(ConstV.TEXT_FONT);
-		setForeground(ConstV.TEXT);
-		setBackground(ConstV.BACKGROUND);
-		setRolloverEnabled(false);
-		setFocusPainted(false);
+public class SolveButton extends ViewElement {
+
+	private JButton button;
+
+	public SolveButton(SController controller) {
+		super(controller);
+		button = new JButton();
+		button.setText(ConstV.SOLVE_BUTTON);
+		button.setFont(ConstV.TEXT_FONT);
+		button.setForeground(ConstV.TEXT);
+		button.setBackground(ConstV.BACKGROUND);
+		button.setRolloverEnabled(false);
+		button.setFocusPainted(false);
+		button.addActionListener( new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				solveCurrentSudoku();
+			}
+		} );
+	}
+	
+	public JButton getButton() {
+		return button;
 	}
 }

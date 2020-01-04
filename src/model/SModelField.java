@@ -1,5 +1,8 @@
 package model;
 
+import model.service.FixedFieldException;
+import model.service.InvalidValueException;
+
 public class SModelField {
 
 	private int row;
@@ -42,12 +45,21 @@ public class SModelField {
 					this.getClass() + ": Wrong value. Sudoku fields contain numbers in range <1,9> and 0 for empty field");
 	}
 
-	public void setValue(int value) {
-		if (value >= 0 && value <= 9 && !fixed)
-			this.value = value;
+	public void setValue(int value) throws FixedFieldException, InvalidValueException {
+		if( !this.fixed )
+			if( value < 0 || value > 9 )
+				throw new InvalidValueException("Value must be in range <1,9>. Tried to insert: " + value);
+			else
+				this.value = value;
 		else
-			System.err.println(
-					this.getClass() + ": Wrong value. Sudoku fields contain numbers in range <1,9>  and 0 for empty field or field is fixed.");
+			throw new FixedFieldException("Cannot change fixed sudoku field. Tried to insert: " + value);
+	}
+	
+	public void reset() throws FixedFieldException {
+		if( !this.fixed )
+			this.value = 0;
+		else
+			throw new FixedFieldException("Cannot change fixed sudoku field. Tried to reset.");
 	}
 
 	public int getValue() {

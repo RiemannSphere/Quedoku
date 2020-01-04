@@ -7,14 +7,14 @@ import java.awt.event.FocusEvent;
 import java.util.function.Consumer;
 
 import javax.swing.BorderFactory;
-import javax.swing.JFormattedTextField;
+import javax.swing.JTextField;
 
 import controller.SController;
 import controller.ViewElement;
 
 public class SViewField extends ViewElement {
 
-	private JFormattedTextField textField;
+	private JTextField textField;
 	private int row;
 	private int col;
 	private int value;
@@ -51,10 +51,10 @@ public class SViewField extends ViewElement {
 		super(controller);
 		this.row = r;
 		this.col = c;
-		textField = new JFormattedTextField();
+		textField = new JTextField();
 		textField.setBackground(ConstV.FIELD);
 		textField.setBorder(BorderFactory.createEmptyBorder());
-		textField.setHorizontalAlignment(JFormattedTextField.CENTER);
+		textField.setHorizontalAlignment(JTextField.CENTER);
 		textField.setForeground(ConstV.NUMBER);
 		textField.setFont(ConstV.NUMBER_FONT);
 		if (!fixed) {
@@ -64,7 +64,7 @@ public class SViewField extends ViewElement {
 		}
 	}
 
-	public JFormattedTextField getTextField() {
+	public JTextField getTextField() {
 		return textField;
 	}
 
