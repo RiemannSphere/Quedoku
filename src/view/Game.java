@@ -155,6 +155,8 @@ public class Game extends JFrame {
 		
 		JLabel text = new JLabel();
 		text.setForeground(ConstV.TEXT);
+		text.setHorizontalAlignment(JLabel.CENTER);
+		text.setVerticalAlignment(JLabel.CENTER);
 		text.setText("<html><font size=\"4\"><p style=\"text-align: center;\"><span style=\"font-family: &quot;Lucida Console&quot;, Monaco, monospace;\">Welcome to Quedoku - queue-based sudoku game!</span></p>\r\n" + 
 				"<p><br></p>" +
 				"<p style=\"text-align: center;\"><span style=\"font-family: 'Lucida Console', Monaco, monospace;\">RULES</span></p>\r\n" + 

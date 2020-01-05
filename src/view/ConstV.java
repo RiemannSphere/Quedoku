@@ -5,7 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 
 public class ConstV {
-	private static final double SCALE = 1.4;
+	private static final double SCALE = 1.4; //1.4
 	public static final String GAME_NAME = "Quedoku";
 	public static final String NEW_GAME_BUTTON = "New Game";
 	public static final String SOLVE_BUTTON = "Solve";
