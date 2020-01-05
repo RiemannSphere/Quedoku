@@ -6,9 +6,10 @@ import java.awt.Font;
 
 public class ConstV {
 	private static final double SCALE = 1.4;
-	public static final String GAME_NAME = "Sudoku";
+	public static final String GAME_NAME = "Quedoku";
 	public static final String NEW_GAME_BUTTON = "New Game";
 	public static final String SOLVE_BUTTON = "Solve";
+	public static final String CHECK_BUTTON = "Check";
 	public static final int FRAME_SIZE = (int)Math.round(450*SCALE);
 	public static final int TOP_HEIGHT = (int)Math.round(30*SCALE);
 	public static final int BOTTOM_HEIGHT = (int)Math.round(30*SCALE);

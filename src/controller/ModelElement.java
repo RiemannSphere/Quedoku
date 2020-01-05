@@ -48,6 +48,16 @@ public class ModelElement {
 		case SController.FROM_V_SOLVE:
 			solveCurrent();
 			break;
+		case SController.FROM_V_CHECK:
+			if (isSolved()) {
+				try {
+					queue.offer(String.format(SController.SUDOKU_SOLVED_FORMAT, SController.FROM_M_SUDOKU_SOLVED),
+							SController.OFFER_TIMEOUT, TimeUnit.MILLISECONDS);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+			break;
 		}
 	}
 
@@ -110,12 +120,21 @@ public class ModelElement {
 	protected void newGame() {
 
 	};
-	
+
 	/**
 	 * Override this method to get solved sudoku
 	 */
 	protected void solveCurrent() {
-		
+
+	}
+
+	/**
+	 * Override this method to settle if sudoku is solved
+	 * 
+	 * @return true or false
+	 */
+	protected boolean isSolved() {
+		return true;
 	}
 
 }

@@ -1,7 +1,7 @@
 package model;
 
-import model.service.FixedFieldException;
-import model.service.InvalidValueException;
+import model.service.exc.FixedFieldException;
+import model.service.exc.InvalidValueException;
 
 public class SModelField {
 

@@ -1,5 +1,9 @@
 package view;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+
 import controller.SController;
 import controller.ViewElement;
 
@@ -12,7 +16,7 @@ public class SudokuView extends ViewElement {
 		fields = new SViewField[9][9];
 		for (int r = 0; r != 9; r++) {
 			for (int c = 0; c != 9; c++) {
-				fields[r][c] = new SViewField(r, c, false,controller);
+				fields[r][c] = new SViewField(r, c, false, controller);
 			}
 		}
 	}
@@ -34,4 +38,5 @@ public class SudokuView extends ViewElement {
 			}
 		}
 	}
+
 }

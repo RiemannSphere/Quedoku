@@ -2,12 +2,21 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 
 import controller.SController;
@@ -32,6 +41,7 @@ public class Game extends JFrame {
 	private JLabel gameLabel;
 	private NewGameButton newGameButton;
 	private SolveButton solveButton;
+	private CheckButton checkButton;
 
 	{	
 		layout = new BorderLayout();
@@ -81,8 +91,11 @@ public class Game extends JFrame {
 		
 		newGameButton = new NewGameButton(controller);
 		solveButton = new SolveButton(controller);
+		checkButton = new CheckButton(controller);
+		
 		bottom.add(newGameButton.getButton());
 		bottom.add(solveButton.getButton());
+		bottom.add(checkButton.getButton());
 		bottom.setBackground(ConstV.BACKGROUND);
 		bottom.setSize(ConstV.FRAME_SIZE, ConstV.BOTTOM_HEIGHT);
 		
@@ -97,7 +110,83 @@ public class Game extends JFrame {
 		int margin = (ConstV.FRAME_SIZE - centerWidth)/2;
 		center.setBorder(new EmptyBorder(0, margin, 0, margin));
 		
+		createMenu();
+		
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+	    int x = (int) ((dimension.getWidth() - getWidth()) / 2);
+	    int y = (int) ((dimension.getHeight() - getHeight()) / 2);
+	    setLocation(x, y);
 		setVisible(true);
 	}
 
+	private void createMenu() {
+		JMenuBar menuBar = new JMenuBar();
+
+		JMenu fileMenu = new JMenu("Menu");
+        fileMenu.setMnemonic(KeyEvent.VK_F);
+        
+        JMenuItem manual = new JMenuItem("Manual");
+        manual.setMnemonic(KeyEvent.VK_E);
+        manual.setToolTipText("Exit application");
+        manual.addActionListener((event) -> showManual());
+        
+        JMenuItem exit = new JMenuItem("Exit");
+        exit.setMnemonic(KeyEvent.VK_E);
+        exit.setToolTipText("Exit application");
+        exit.addActionListener((event) -> System.exit(0));
+
+        fileMenu.add(manual);
+        fileMenu.add(exit);
+        menuBar.add(fileMenu);
+
+        setJMenuBar(menuBar);
+	}
+	
+	private void showManual() {
+		JPanel panel = new JPanel(); 
+		panel.setLayout(new BorderLayout());
+		panel.setBackground(ConstV.BACKGROUND);
+		panel.setPreferredSize(ConstV.FRAME_DIMENSION);
+		
+		JFrame manual = new JFrame();
+		manual.setLayout(new FlowLayout(FlowLayout.CENTER));
+		manual.setSize(ConstV.FRAME_DIMENSION);
+		manual.setResizable(false);
+		
+		JLabel text = new JLabel();
+		text.setForeground(ConstV.TEXT);
+		text.setText("<html><font size=\"4\"><p style=\"text-align: center;\"><span style=\"font-family: &quot;Lucida Console&quot;, Monaco, monospace;\">Welcome to Quedoku - queue-based sudoku game!</span></p>\r\n" + 
+				"<p><br></p>" +
+				"<p style=\"text-align: center;\"><span style=\"font-family: 'Lucida Console', Monaco, monospace;\">RULES</span></p>\r\n" + 
+				"<ul>\r\n" + 
+				"  <li style=\"text-align: left;\"><span style=\"font-family: 'Lucida Console', Monaco, monospace;\">Type numbers from 1 to 9 into empty fields.</span></li>\r\n" + 
+				"  <li style=\"text-align: left;\"><span style=\"font-family: 'Lucida Console', Monaco, monospace;\">Your task is filling entire grid so that:</span>\r\n" + 
+				"    <ul>\r\n" + 
+				"      <li style=\"text-align: left;\"><span style=\"font-family: 'Lucida Console', Monaco, monospace;\">numbers in every row don't repeat,</span></li>\r\n" + 
+				"      <li style=\"text-align: left;\"><span style=\"font-family: 'Lucida Console', Monaco, monospace;\">numbers in every column don't repeat,</span></li>\r\n" + 
+				"      <li style=\"text-align: left;\"><span style=\"font-family: 'Lucida Console', Monaco, monospace;\">numbers in every 3x3 cell don't repeat.</span></li>\r\n" + 
+				"    </ul>\r\n" + 
+				"  </li>\r\n" + 
+				"</ul>\r\n" + 
+				"<p style=\"text-align: center;\"><span style=\"font-family: 'Lucida Console', Monaco, monospace;\">HOW-TO</span></p>\r\n" + 
+				"<ul>\r\n" + 
+				"  <li style=\"text-align: left;\"><span style=\"font-family: 'Lucida Console', Monaco, monospace;\">Type a number.</span></li>\r\n" + 
+				"  <li style=\"text-align: left;\"><span style=\"font-family: 'Lucida Console', Monaco, monospace;\">Hit ENTER or just click somewhere else to accept a change.</span></li>\r\n" + 
+				"</ul>\r\n" + 
+				"<p style=\"text-align: center;\"><span style=\"font-family: 'Lucida Console', Monaco, monospace;\">That's so simple!</span></p>\r\n" + 
+				"<p style=\"text-align: right;\"><span style=\"font-family: 'Lucida Console', Monaco, monospace;\">Cheers,</span></p>\r\n" + 
+				"<p style=\"text-align: right;\"><span style=\"font-family: 'Lucida Console', Monaco, monospace;\">Piotr Ko³odziejski</span></p>\r\n" + 
+				"<p style=\"text-align: right;\"><span style=\"font-family: 'Lucida Console', Monaco, monospace;\">Warsaw, 2020</span></p></font></html>");
+		
+		panel.add(text, BorderLayout.CENTER);
+		manual.getContentPane().add(panel);
+		
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+	    int x = (int) ((dimension.getWidth() - manual.getWidth()) / 2);
+	    int y = (int) ((dimension.getHeight() - manual.getHeight()) / 2);
+	    manual.setLocation(x, y);
+		
+		manual.setVisible(true);
+	}
+	
 }

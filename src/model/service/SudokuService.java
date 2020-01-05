@@ -1,6 +1,14 @@
 package model.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import model.SModelField;
+import model.service.exc.FixedFieldException;
+import model.service.exc.InvalidValueException;
+import model.service.exc.NoValueFitsException;
+import model.service.exc.OutOfTheBoardException;
+import model.service.exc.SudokuUnsolvableException;
 
 public class SudokuService {
 
@@ -270,6 +278,78 @@ public class SudokuService {
 			}
 		}
 		return copy;
+	}
+	/**
+	 * Checks if sudoku is finished.
+	 * @param sudoku
+	 * @return true or false
+	 */
+	public static boolean isSolved(SModelField[][] sudoku) {
+		// rows
+		for (int row = 0; row != 9; row++) {
+			List<Integer> currentRow = new ArrayList<>();
+			for (int col = 0; col != 9; col++) {
+				currentRow.add(sudoku[row][col].getValue());
+			}
+			if (!currentRow.stream().allMatch((value) -> isValid(value))) {
+				System.out.println("row " + row + " is invalid (some values are not in <1,9>)");
+				return false;
+			}
+			if (currentRow.stream().distinct().count() != 9) {
+				System.out.println("row " + row + " is invalid (values are not unique)");
+				return false;
+			}
+
+		}
+		// columns
+		for (int col = 0; col != 9; col++) {
+			List<Integer> currentCol = new ArrayList<>();
+			for (int row = 0; row != 9; row++) {
+				currentCol.add(sudoku[row][col].getValue());
+			}
+			if (!currentCol.stream().allMatch((value) -> isValid(value))) {
+				System.out.println("col " + col + " is invalid (some values are not in <1,9>)");
+				return false;
+			}
+			if (currentCol.stream().distinct().count() != 9) {
+				System.out.println("col " + col + " is invalid (values are not unique)");
+				return false;
+			}
+
+		}
+
+		// cells
+		for (int cell = 0; cell != 9; cell++) {
+			List<Integer> currentCell = new ArrayList<>();
+			for (int row = 0; row != 9; row++) {
+				for (int col = 0; col != 9; col++) {
+					try {
+						if (whichCell(row, col) == cell) {
+							currentCell.add(sudoku[row][col].getValue());
+						}
+					} catch (OutOfTheBoardException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			if (!currentCell.stream().allMatch((value) -> isValid(value))) {
+				System.out.println("cell " + cell + " is invalid (some values are not in <1,9>)");
+				return false;
+			}
+			if (currentCell.stream().distinct().count() != 9) {
+				System.out.println("cell" + cell + " is invalid (values are not unique)");
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	private static boolean isValid(int value) {
+		if (value >= 1 && value <= 9) {
+			return true;
+		}
+		return false;
 	}
 
 }

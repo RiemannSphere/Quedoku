@@ -11,10 +11,11 @@ public class SController {
 	public static final String FROM_V_NEW_GAME = "createNewSudoku";
 	public static final String FROM_V_SOLVE = "solveSudoku";
 	public static final String FROM_V_CHANGE_FIELD = "changeModelFieldValue";
+	public static final String FROM_V_CHECK = "checkSudoku";
 	public static final String EXIT_GAME = "exitGame";
 	public static final String FROM_M_UPDATE_FIELD = "updateViewFieldValue";
 	public static final String FROM_M_UPDATE_SUDOKU = "updateSudokuView";
-	
+	public static final String FROM_M_SUDOKU_SOLVED = "sudokuHasBeenSolved";
 
 	public static final String SEPARATOR = ";";
 	public static final String CHANGE_FIELD_FORMAT = "%s" + SEPARATOR + "%d" + SEPARATOR + "%d" + SEPARATOR + "%d"
@@ -22,7 +23,9 @@ public class SController {
 	public static final String UPDATE_FIELD_FORMAT = "%s" + SEPARATOR + "%d" + SEPARATOR + "%d" + SEPARATOR + "%d";
 	public static final String UPDATE_SUDOKU_FORMAT = "%s" + SEPARATOR + "%s" + SEPARATOR + "%s";
 	public static final String NEW_GAME_FORMAT = "%s";
-	public static final String SOLVE_FORMAT = "%s"; // current sudoku from model will be solved. it isn't transfering sudoku from view.  
+	public static final String SOLVE_FORMAT = "%s"; // current sudoku from model will be solved. it isn't transfering sudoku from view.
+	public static final String SUDOKU_SOLVED_FORMAT = "%s";
+	public static final String CHECK_FORMAT = "%s";
 
 	private List<ModelElement> model;
 	private List<ViewElement> view;

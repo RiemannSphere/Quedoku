@@ -210,46 +210,6 @@ public class GridService {
 		}
 		
 	}
-	
-	private static int[][] solveB(int[][] sudoku) {
-		int[][] toSolve;
-		while (true) {
-			toSolve = copySudoku(sudoku);
-
-			int[] cell0 = new Unique().getUnique();
-			int[] cell4 = new Unique().getUnique();
-			int[] cell8 = new Unique().getUnique();
-
-			int i0, i4, i8;
-			i0 = i4 = i8 = 0;
-
-			// diagonal cells
-			for (int i = 0; i != 9; ++i) {
-				for (int j = 0; j != 9; ++j) {
-					if (whichCell(i, j) == 0) {
-						toSolve[i][j] = cell0[i0++];
-					} else if (whichCell(i, j) == 4) {
-						toSolve[i][j] = cell4[i4++];
-					} else if (whichCell(i, j) == 8) {
-						toSolve[i][j] = cell8[i8++];
-					}
-				}
-			}
-
-			// remaining fields
-			for (int i = 0; i != 9; ++i) {
-				for (int j = 0; j != 9; ++j) {
-					if (whichCell(i, j) != 0 && whichCell(i, j) != 4 && whichCell(i, j) != 8) {
-						toSolve[i][j] = getFitValue(toSolve, i, j, whichCell(i, j));
-					}
-				}
-			}
-
-			if (howManyZeros(toSolve) == 0) {
-				return toSolve;
-			}
-		}
-	}
 
 	public static int[][] copySudoku(int[][] sudoku) {
 		return Arrays.stream(sudoku)

@@ -56,6 +56,18 @@ public class ViewElement {
 			e.printStackTrace();
 		}
 	}
+	
+	protected final void checkCurrentSudoku() {
+		try {
+			queue.offer(String.format(SController.CHECK_FORMAT, SController.FROM_V_CHECK),
+					SController.OFFER_TIMEOUT, TimeUnit.MILLISECONDS);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (IllegalFormatException e) {
+			System.err.println("Command doesn't match a format.");
+			e.printStackTrace();
+		}
+	}
 
 	/**
 	 * Internal method used to trigger certain actions
@@ -95,6 +107,9 @@ public class ViewElement {
 				System.err.println("Wrong number of arguments. You've changed command format, haven't you?");
 			}
 			break;
+		case SController.FROM_M_SUDOKU_SOLVED:
+			sudokuBeenSolved();
+			break;
 		}
 	}
 
@@ -121,5 +136,12 @@ public class ViewElement {
 	protected void updateSudokuPuzzle(int[][] sudoku, boolean[][] fixed) {
 
 	};
+	
+	/**
+	 * Override this method and announce somehow that sudoku been solved.
+	 */
+	protected void sudokuBeenSolved() {
+		
+	}
 
 }

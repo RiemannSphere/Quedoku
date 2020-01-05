@@ -1,4 +1,4 @@
-package model.service;
+package model.service.exc;
 
 public class NoValueFitsException extends Exception {
 	private static final long serialVersionUID = 1L;

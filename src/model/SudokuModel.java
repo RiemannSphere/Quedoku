@@ -2,15 +2,15 @@ package model;
 
 import controller.ModelElement;
 import controller.SController;
-import model.service.FixedFieldException;
-import model.service.InvalidValueException;
 import model.service.SudokuService;
-import model.service.SudokuUnsolvableException;
+import model.service.exc.FixedFieldException;
+import model.service.exc.InvalidValueException;
+import model.service.exc.SudokuUnsolvableException;
 
 public class SudokuModel extends ModelElement {
 
 	private SModelField[][] sudoku;
-	private int emptyFields = 35;
+	private int emptyFields = 3;
 
 	public SudokuModel(SController controller) {
 		super(controller);
@@ -67,6 +67,11 @@ public class SudokuModel extends ModelElement {
 			}	
 		}
 		updateSudokuViewPuzzle(values,fixed);
+	}
+	
+	@Override
+	protected boolean isSolved() {
+		return SudokuService.isSolved(sudoku);
 	}
 
 }
