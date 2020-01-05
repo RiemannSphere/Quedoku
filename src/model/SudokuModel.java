@@ -10,7 +10,7 @@ import model.service.exc.SudokuUnsolvableException;
 public class SudokuModel extends ModelElement {
 
 	private SModelField[][] sudoku;
-	private int emptyFields = 3;
+	private int emptyFields = 35;
 
 	public SudokuModel(SController controller) {
 		super(controller);
